@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "566924029126",
-    "firebase_url": "https://fir-iot-2a4d3-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "fir-iot-2a4d3",
-    "storage_bucket": "fir-iot-2a4d3.appspot.com"
+    "project_number": "852869785617",
+    "firebase_url": "https://iot-fyp-1990a-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "iot-fyp-1990a",
+    "storage_bucket": "iot-fyp-1990a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:566924029126:android:416daf42e6b53d373f3bc7",
+        "mobilesdk_app_id": "1:852869785617:android:0e5facd766460af8e6a9b0",
         "android_client_info": {
           "package_name": "com.example.connectwithfirebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "566924029126-7vjb519tifqpb6ue0fsp8s79fqab6a3c.apps.googleusercontent.com",
+          "client_id": "852869785617-bhcjhe9pd2fcu9gbk75j0k2soa22sdsl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBgYGjoSKfhTrcknVDZWGxOl1LnxpHj5NA"
+          "current_key": "AIzaSyD9tkBoOFFVo8tVQdPIDLN3m-jaXQUWPKo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "566924029126-7vjb519tifqpb6ue0fsp8s79fqab6a3c.apps.googleusercontent.com",
+              "client_id": "852869785617-bhcjhe9pd2fcu9gbk75j0k2soa22sdsl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

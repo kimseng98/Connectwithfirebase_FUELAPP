@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.connectwithfirebase.R
-import com.example.connectwithfirebase.models.EmployeeModel
+import com.example.connectwithfirebase.models.DeviceModel
 
 
-class  EmpAdapter(private val empList: ArrayList<EmployeeModel>) :
+class  EmpAdapter(private val empList: ArrayList<DeviceModel>) :
     RecyclerView.Adapter<EmpAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener

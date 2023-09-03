@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.connectwithfirebase.adapters.EmpAdapter
-import com.example.connectwithfirebase.models.EmployeeModel
+import com.example.connectwithfirebase.models.DeviceModel
 import com.example.connectwithfirebase.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,7 +21,7 @@ class FetchingActivity : AppCompatActivity() {
 
     private lateinit var empRecyclerView: RecyclerView
     private lateinit var tvLoadingData: TextView
-    private lateinit var empList: ArrayList<EmployeeModel>
+    private lateinit var empList: ArrayList<DeviceModel>
     private lateinit var dbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class FetchingActivity : AppCompatActivity() {
         empRecyclerView.setHasFixedSize(true)
         tvLoadingData = findViewById(R.id.tvLoadingData)
 
-        empList = arrayListOf<EmployeeModel>()
+        empList = arrayListOf<DeviceModel>()
 
         getEmployeesData()
 
@@ -51,7 +51,7 @@ class FetchingActivity : AppCompatActivity() {
                 empList.clear()
                 if (snapshot.exists()){
                     for (empSnap in snapshot.children){
-                        val empData = empSnap.getValue(EmployeeModel::class.java)
+                        val empData = empSnap.getValue(DeviceModel::class.java)
                         empList.add(empData!!)
                     }
                     val mAdapter = EmpAdapter(empList)

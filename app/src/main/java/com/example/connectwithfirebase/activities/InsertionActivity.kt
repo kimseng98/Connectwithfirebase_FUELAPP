@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.connectwithfirebase.models.EmployeeModel
+import com.example.connectwithfirebase.models.DeviceModel
 import com.example.connectwithfirebase.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -49,7 +49,7 @@ class InsertionActivity : AppCompatActivity() {
 
         val empId = empName
 
-        val employee = EmployeeModel(empId, empName, empAge)
+        val employee = DeviceModel(empId, empName, empAge)
 
         dbRef.child(empId).setValue(employee)
             .addOnCompleteListener {

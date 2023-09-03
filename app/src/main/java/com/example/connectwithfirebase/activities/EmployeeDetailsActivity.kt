@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.connectwithfirebase.models.EmployeeModel
+import com.example.connectwithfirebase.models.DeviceModel
 import com.example.connectwithfirebase.R
 import com.google.firebase.database.FirebaseDatabase
 
@@ -63,11 +63,11 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private fun deleteRecord(
         id: String
     ){
-        val dbRef = FirebaseDatabase.getInstance().getReference("Employees").child(id)
+        val dbRef = FirebaseDatabase.getInstance().getReference("FYP").child(id)
         val mTask = dbRef.removeValue()
 
         mTask.addOnSuccessListener {
-            Toast.makeText(this, "Employee data deleted", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "data deleted", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, FetchingActivity::class.java)
             finish()
@@ -87,14 +87,14 @@ class EmployeeDetailsActivity : AppCompatActivity() {
 
         mDialog.setView(mDialogView)
 
-        val etEmpName = mDialogView.findViewById<EditText>(R.id.etDeviceName)
-        val etEmpAge = mDialogView.findViewById<EditText>(R.id.etDefaultValue)
+        val etName = mDialogView.findViewById<EditText>(R.id.etDeviceName)
+        val etValue = mDialogView.findViewById<EditText>(R.id.etDefaultValue)
         //val etEmpSalary = mDialogView.findViewById<EditText>(R.id.etEmpSalary)
 
         val btnUpdateData = mDialogView.findViewById<Button>(R.id.btnUpdateData)
 
-        etEmpName.setText(intent.getStringExtra("deviceName").toString())
-        etEmpAge.setText(intent.getStringExtra("deviceDefaultValue").toString())
+        etName.setText(intent.getStringExtra("deviceName").toString())
+        etValue.setText(intent.getStringExtra("deviceDefaultValue").toString())
         //etEmpSalary.setText(intent.getStringExtra("empSalary").toString())
 
         mDialog.setTitle("Updating $empName Record")
@@ -105,17 +105,16 @@ class EmployeeDetailsActivity : AppCompatActivity() {
         btnUpdateData.setOnClickListener {
             updateEmpData(
                 empId,
-                etEmpName.text.toString(),
-                etEmpAge.text.toString(),
+                etName.text.toString(),
+                etValue.text.toString(),
                 //etEmpSalary.text.toString()
             )
 
-            Toast.makeText(applicationContext, "Employee Data Updated", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Data Updated", Toast.LENGTH_LONG).show()
 
             //we are setting updated data to our textviews
-            tvEmpName.text = etEmpName.text.toString()
-            tvEmpAge.text = etEmpAge.text.toString()
-            //tvEmpSalary.text = etEmpSalary.text.toString()
+            tvEmpName.text = etName.text.toString()
+            tvEmpAge.text = etValue.text.toString()
 
             alertDialog.dismiss()
         }
@@ -124,11 +123,11 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private fun updateEmpData(
         id: String,
         name: String,
-        age: String,
-        //salary: String
-    ) {
-        val dbRef = FirebaseDatabase.getInstance().getReference("Employees").child(id)
-        val empInfo = EmployeeModel(id, name, age)
+        value: String,
+
+        ) {
+        val dbRef = FirebaseDatabase.getInstance().getReference("FYP").child(id)
+        val empInfo = DeviceModel(id, name, value)
         dbRef.setValue(empInfo)
     }
 
