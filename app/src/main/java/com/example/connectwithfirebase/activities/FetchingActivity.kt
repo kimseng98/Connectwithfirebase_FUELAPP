@@ -44,7 +44,7 @@ class FetchingActivity : AppCompatActivity() {
         empRecyclerView.visibility = View.GONE
         tvLoadingData.visibility = View.VISIBLE
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Employees")
+        dbRef = FirebaseDatabase.getInstance().getReference("FYP")
 
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -62,10 +62,10 @@ class FetchingActivity : AppCompatActivity() {
                             val intent = Intent(this@FetchingActivity, EmployeeDetailsActivity::class.java)
 
                             //putextras
-                            intent.putExtra("empId",empList[position].empId)
-                            intent.putExtra("empName",empList[position].empName)
-                            intent.putExtra("empAge",empList[position].empAge)
-                            intent.putExtra("empSalary",empList[position].empSalary)
+                            intent.putExtra("deviceId",empList[position].deviceId)
+                            intent.putExtra("deviceName",empList[position].deviceName)
+                            intent.putExtra("deviceDefaultValue",empList[position].deviceDefaultValue)
+                            //intent.putExtra("empSalary",empList[position].empSalary)
                             startActivity(intent)
                         }
 

@@ -8,48 +8,35 @@
     tools:context=".activities.InsertionActivity">
 
     <EditText
-        android:id="@+id/etEmpName"
+        android:id="@+id/etDeviceName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:ems="10"
+        android:hint="Enter device name"
         android:inputType="textPersonName"
-        android:hint="Enter name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etEmpAge"
+        android:id="@+id/etDefaultValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Enter Default Value"
         android:inputType="textPersonName"
-        android:hint="Enter age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmpName" />
-
-    <EditText
-        android:id="@+id/etEmpSalary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter salary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmpAge" />
+        app:layout_constraintTop_toBottomOf="@+id/etDeviceName" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Save Data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmpSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/etDefaultValue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

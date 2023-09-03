@@ -17,7 +17,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private lateinit var tvEmpId: TextView
     private lateinit var tvEmpName: TextView
     private lateinit var tvEmpAge: TextView
-    private lateinit var tvEmpSalary: TextView
+    //private lateinit var tvEmpSalary: TextView
     private lateinit var btnUpdate: Button
     private lateinit var btnDelete: Button
 
@@ -31,14 +31,14 @@ class EmployeeDetailsActivity : AppCompatActivity() {
 
         btnUpdate.setOnClickListener {
             openUpdateDialog(
-                intent.getStringExtra("empId").toString(),
-                intent.getStringExtra("empName").toString()
+                intent.getStringExtra("deviceId").toString(),
+                intent.getStringExtra("deviceName").toString()
             )
         }
 
         btnDelete.setOnClickListener {
             deleteRecord(
-                intent.getStringExtra("empId").toString()
+                intent.getStringExtra("deviceId").toString()
             )
         }
     }
@@ -46,17 +46,17 @@ class EmployeeDetailsActivity : AppCompatActivity() {
         tvEmpId = findViewById(R.id.tvEmpId)
         tvEmpName = findViewById(R.id.tvEmpName)
         tvEmpAge = findViewById(R.id.tvEmpAge)
-        tvEmpSalary = findViewById(R.id.tvEmpSalary)
+        //tvEmpSalary = findViewById(R.id.tvEmpSalary)
 
         btnUpdate = findViewById(R.id.btnUpdate)
         btnDelete = findViewById(R.id.btnDelete)
     }
 
     private fun setValuesToViews() {
-        tvEmpId.text = intent.getStringExtra("empId")
-        tvEmpName.text = intent.getStringExtra("empName")
-        tvEmpAge.text = intent.getStringExtra("empAge")
-        tvEmpSalary.text = intent.getStringExtra("empSalary")
+        tvEmpId.text = intent.getStringExtra("deviceId")
+        tvEmpName.text = intent.getStringExtra("deviceName")
+        tvEmpAge.text = intent.getStringExtra("deviceDefaultValue")
+        //tvEmpSalary.text = intent.getStringExtra("empSalary")
 
     }
 
@@ -87,15 +87,15 @@ class EmployeeDetailsActivity : AppCompatActivity() {
 
         mDialog.setView(mDialogView)
 
-        val etEmpName = mDialogView.findViewById<EditText>(R.id.etEmpName)
-        val etEmpAge = mDialogView.findViewById<EditText>(R.id.etEmpAge)
-        val etEmpSalary = mDialogView.findViewById<EditText>(R.id.etEmpSalary)
+        val etEmpName = mDialogView.findViewById<EditText>(R.id.etDeviceName)
+        val etEmpAge = mDialogView.findViewById<EditText>(R.id.etDefaultValue)
+        //val etEmpSalary = mDialogView.findViewById<EditText>(R.id.etEmpSalary)
 
         val btnUpdateData = mDialogView.findViewById<Button>(R.id.btnUpdateData)
 
-        etEmpName.setText(intent.getStringExtra("empName").toString())
-        etEmpAge.setText(intent.getStringExtra("empAge").toString())
-        etEmpSalary.setText(intent.getStringExtra("empSalary").toString())
+        etEmpName.setText(intent.getStringExtra("deviceName").toString())
+        etEmpAge.setText(intent.getStringExtra("deviceDefaultValue").toString())
+        //etEmpSalary.setText(intent.getStringExtra("empSalary").toString())
 
         mDialog.setTitle("Updating $empName Record")
 
@@ -107,7 +107,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
                 empId,
                 etEmpName.text.toString(),
                 etEmpAge.text.toString(),
-                etEmpSalary.text.toString()
+                //etEmpSalary.text.toString()
             )
 
             Toast.makeText(applicationContext, "Employee Data Updated", Toast.LENGTH_LONG).show()
@@ -115,7 +115,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
             //we are setting updated data to our textviews
             tvEmpName.text = etEmpName.text.toString()
             tvEmpAge.text = etEmpAge.text.toString()
-            tvEmpSalary.text = etEmpSalary.text.toString()
+            //tvEmpSalary.text = etEmpSalary.text.toString()
 
             alertDialog.dismiss()
         }
@@ -125,10 +125,10 @@ class EmployeeDetailsActivity : AppCompatActivity() {
         id: String,
         name: String,
         age: String,
-        salary: String
+        //salary: String
     ) {
         val dbRef = FirebaseDatabase.getInstance().getReference("Employees").child(id)
-        val empInfo = EmployeeModel(id, name, age, salary)
+        val empInfo = EmployeeModel(id, name, age)
         dbRef.setValue(empInfo)
     }
 

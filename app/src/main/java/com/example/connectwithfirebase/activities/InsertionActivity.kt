@@ -12,9 +12,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class InsertionActivity : AppCompatActivity() {
 
-    private lateinit var etEmpName: EditText
-    private lateinit var etEmpAge: EditText
-    private lateinit var etEmpSalary: EditText
+    private lateinit var etDeviceName: EditText
+    private lateinit var etDefaultValue: EditText
     private lateinit var btnSaveData: Button
 
     private lateinit var dbRef: DatabaseReference
@@ -23,12 +22,11 @@ class InsertionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insertion)
 
-        etEmpName = findViewById(R.id.etEmpName)
-        etEmpAge = findViewById(R.id.etEmpAge)
-        etEmpSalary = findViewById(R.id.etEmpSalary)
+        etDeviceName = findViewById(R.id.etDeviceName)
+        etDefaultValue = findViewById(R.id.etDefaultValue)
         btnSaveData = findViewById(R.id.btnSave)
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Employees")
+        dbRef = FirebaseDatabase.getInstance().getReference("FYP")
 
         btnSaveData.setOnClickListener {
             saveEmployeeData()
@@ -38,31 +36,27 @@ class InsertionActivity : AppCompatActivity() {
     private fun saveEmployeeData() {
 
         //getting values
-        val empName = etEmpName.text.toString()
-        val empAge = etEmpAge.text.toString()
-        val empSalary = etEmpSalary.text.toString()
+        val empName = etDeviceName.text.toString()
+        val empAge = etDefaultValue.text.toString()
 
         if (empName.isEmpty()) {
-            etEmpName.error = "Please enter name"
+            etDeviceName.error = "Please enter name"
         }
         if (empAge.isEmpty()) {
-            etEmpAge.error = "Please enter age"
-        }
-        if (empSalary.isEmpty()) {
-            etEmpSalary.error = "Please enter salary"
+            etDefaultValue.error = "Please enter age"
         }
 
-        val empId = dbRef.push().key!!
 
-        val employee = EmployeeModel(empId, empName, empAge, empSalary)
+        val empId = empName
+
+        val employee = EmployeeModel(empId, empName, empAge)
 
         dbRef.child(empId).setValue(employee)
             .addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
-                etEmpName.text.clear()
-                etEmpAge.text.clear()
-                etEmpSalary.text.clear()
+                etDeviceName.text.clear()
+                etDefaultValue.text.clear()
 
 
             }.addOnFailureListener { err ->
