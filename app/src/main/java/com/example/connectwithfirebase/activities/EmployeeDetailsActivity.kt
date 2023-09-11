@@ -16,6 +16,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
 
     private lateinit var tvEmpId: TextView
     private lateinit var tvEmpName: TextView
+    private lateinit var tvEmpValue: TextView
     private lateinit var tvEmpAge: TextView
     //private lateinit var tvEmpSalary: TextView
     private lateinit var btnUpdate: Button
@@ -45,6 +46,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private fun initView() {
         tvEmpId = findViewById(R.id.tvEmpId)
         tvEmpName = findViewById(R.id.tvEmpName)
+        //tvEmpValue = findViewById(R.id.tvEmpValue)
         tvEmpAge = findViewById(R.id.tvEmpAge)
         //tvEmpSalary = findViewById(R.id.tvEmpSalary)
 
@@ -55,7 +57,12 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private fun setValuesToViews() {
         tvEmpId.text = intent.getStringExtra("deviceId")
         tvEmpName.text = intent.getStringExtra("deviceName")
-        tvEmpAge.text = intent.getStringExtra("deviceDefaultValue")
+        //tvEmpValue.text = intent.getStringExtra("deviceDefaultValue")
+        val defaultValue = 0 // You can change this to your preferred default value
+        val deviceDefaultValue = intent.getIntExtra("deviceDefaultValue", defaultValue)
+
+        // Set the integer value as text for tvEmpAge
+        tvEmpAge.text = deviceDefaultValue.toString()
         //tvEmpSalary.text = intent.getStringExtra("empSalary")
 
     }
@@ -103,18 +110,24 @@ class EmployeeDetailsActivity : AppCompatActivity() {
         alertDialog.show()
 
         btnUpdateData.setOnClickListener {
-            updateEmpData(
-                empId,
-                etName.text.toString(),
-                etValue.text.toString(),
-                //etEmpSalary.text.toString()
-            )
+            val empValueString = etValue.text.toString()
+
+            // Convert empValueString to an Int
+            val empValueInt: Int? = empValueString.toIntOrNull()
+            if (empValueInt != null) {
+                updateEmpData(
+                    empId,
+                    etName.text.toString(),
+                    empValueInt,
+                    //etEmpSalary.text.toString()
+                )
+            }
 
             Toast.makeText(applicationContext, "Data Updated", Toast.LENGTH_LONG).show()
 
             //we are setting updated data to our textviews
             tvEmpName.text = etName.text.toString()
-            tvEmpAge.text = etValue.text.toString()
+            tvEmpAge.text = empValueInt.toString()
 
             alertDialog.dismiss()
         }
@@ -123,7 +136,7 @@ class EmployeeDetailsActivity : AppCompatActivity() {
     private fun updateEmpData(
         id: String,
         name: String,
-        value: String,
+        value: Int,
 
         ) {
         val dbRef = FirebaseDatabase.getInstance().getReference("FYP").child(id)

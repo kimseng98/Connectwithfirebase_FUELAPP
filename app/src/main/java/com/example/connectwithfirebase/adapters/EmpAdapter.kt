@@ -39,6 +39,7 @@ class  EmpAdapter(private val empList: ArrayList<DeviceModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentEmp = empList[position]
         holder.tvEmpName.text = currentEmp.deviceName
+        holder.tvEmpValue.text = "Current Value: "+currentEmp.deviceDefaultValue.toString()
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +49,7 @@ class  EmpAdapter(private val empList: ArrayList<DeviceModel>) :
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         val tvEmpName : TextView = itemView.findViewById(R.id.tvEmpName)
-
+        val tvEmpValue : TextView = itemView.findViewById(R.id.tvEmpValue)
         init {
             itemView.setOnClickListener {
                 clickListener.onItemClick(adapterPosition)

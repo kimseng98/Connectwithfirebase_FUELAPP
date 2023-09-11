@@ -39,6 +39,8 @@ class InsertionActivity : AppCompatActivity() {
         val empName = etDeviceName.text.toString()
         val empAge = etDefaultValue.text.toString()
 
+        val intValue: Int?=empAge.toIntOrNull()
+
         if (empName.isEmpty()) {
             etDeviceName.error = "Please enter name"
         }
@@ -49,7 +51,7 @@ class InsertionActivity : AppCompatActivity() {
 
         val empId = empName
 
-        val employee = DeviceModel(empId, empName, empAge)
+        val employee = DeviceModel(empId, empName, intValue)
 
         dbRef.child(empId).setValue(employee)
             .addOnCompleteListener {
