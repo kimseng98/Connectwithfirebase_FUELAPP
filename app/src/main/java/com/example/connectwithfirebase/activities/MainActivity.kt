@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btnInsertData: Button
     private lateinit var btnFetchData: Button
+    private lateinit var btnFingerprint: Button
     private lateinit var empRecyclerView: RecyclerView
     private lateinit var empList: ArrayList<DeviceModel>
     private lateinit var dbRef: DatabaseReference
@@ -46,10 +47,9 @@ class MainActivity : AppCompatActivity() {
             this.state=BottomSheetBehavior.STATE_COLLAPSED
         }
 
-        val firebase : DatabaseReference = FirebaseDatabase.getInstance().getReference()
-
         btnInsertData = findViewById(R.id.btnInsertData)
         btnFetchData = findViewById(R.id.btnFetchData)
+        btnFingerprint = findViewById(R.id.btnFingerPrint)
 
         btnInsertData.setOnClickListener {
             val intent = Intent(this, InsertionActivity::class.java)
@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FetchingActivity::class.java)
             startActivity(intent)
         }
+        btnFingerprint.setOnClickListener {
+            val intent = Intent(this, FingerprintActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

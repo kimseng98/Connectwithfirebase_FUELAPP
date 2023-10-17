@@ -19,6 +19,9 @@
             android:name=".activities.EmployeeDetailsActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.FingerprintActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.FetchingActivity"
             android:exported="true" />
         <activity
